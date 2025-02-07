@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        /* Basic styling for the calculator */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('calcu.jpg');
+            background-size: cover;
+        }
+        .calculator-container {
+            padding: 50px;
+            border-radius: 5px;
+            background-image: url('green.jpg');
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: white; /* Change the color of the heading to white */
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, min-content);
+            gap: 15px;
+            justify-content: center;
+        }
+        button {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+            width: min-content;
+        }
+        button:hover {
+            background-color: #f0f0f0;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #7b7676;
+            border-radius: 3px;
+            font-size: 16px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="header">
+            <h1>SIMPLE CALCULATOR</h1>
+        </div>
+        <input type="text" id="result" readonly>
+        <div class="button-grid">
+            <!-- Numbers -->
+            <button onclick="appendToResult('0')">0</button>
+            <button onclick="appendToResult('1')">1</button>
+            <button onclick="appendToResult('2')">2</button>
+            <button onclick="appendToResult('+')">+</button>
+
+            <button onclick="appendToResult('3')">3</button>
+            <button onclick="appendToResult('4')">4</button>
+            <button onclick="appendToResult('5')">5</button>
+            <button onclick="appendToResult('-')">-</button>
+
+            <button onclick="appendToResult('6')">6</button>
+            <button onclick="appendToResult('7')">7</button>
+            <button onclick="appendToResult('8')">8</button>
+            <button onclick="appendToResult('*')">*</button>
+
+            <button onclick="appendToResult('9')">9</button>
+            <button onclick="appendToResult('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendToResult('/')">/</button>
+
+            <!-- Clear -->
+            <button onclick="clearResult()">C</button>
+        </div>
+    </div>
+
+    <!-- Include your min.js file here if needed -->
+    <script src="path/to/your/min.js"></script>
+
+    <script>
+        let currentResult = '';
+
+        function appendToResult(value) {
+            currentResult += value;
+            document.getElementById('result').value = currentResult;
+        }
+
+        function calculate() {
+            try {
+                currentResult = eval(currentResult);
+                document.getElementById('result').value = currentResult;
+            } catch (error) {
+                document.getElementById('result').value = 'Error';
+            }
+        }
+
+        function clearResult() {
+            currentResult = '';
+            document.getElementById('result').value = '';
+        }
+    </script>
+</body>
+</html>
